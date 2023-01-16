@@ -1,0 +1,17 @@
+﻿<Window x:Class="Personas.AñadirNacionalidad.AnyadirNacionalidad"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Personas.AñadirNacionalidad"
+        mc:Ignorable="d"
+        Title="Añadir Nacionalidad" Height="140" Width="300" ShowInTaskbar="False" ResizeMode="NoResize" Icon="../Recursos/mundo.png">
+    <StackPanel Margin="10">
+        <TextBlock>Nacionalidad</TextBlock>
+        <TextBox Margin="0,5" Text="{Binding Path=NacionalidadNueva}"/>
+        <StackPanel Margin="15" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Width="60" Margin="10" IsDefault="True" Click="AceptarClick">Aceptar</Button>
+            <Button Width="60" Margin="10" IsCancel="True">Cancelar</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>
