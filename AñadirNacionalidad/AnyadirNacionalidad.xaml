@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Personas.AñadirNacionalidad"
         mc:Ignorable="d"
-        Title="Añadir Nacionalidad" Height="140" Width="300" ShowInTaskbar="False" ResizeMode="NoResize" Icon="../Recursos/mundo.png">
+        Title="Añadir Nacionalidad" Height="170" Width="300" ShowInTaskbar="False" ResizeMode="NoResize" Icon="../Recursos/mundo.png">
     <StackPanel Margin="10">
         <TextBlock>Nacionalidad</TextBlock>
-        <TextBox Margin="0,5" Text="{Binding Path=NacionalidadNueva}"/>
+        <TextBox Margin="0,5" Text="{Binding Path=NacionalidadNueva, UpdateSourceTrigger=PropertyChanged}"/>
         <StackPanel Margin="15" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Width="60" Margin="10" IsDefault="True" Click="AceptarClick">Aceptar</Button>
+            <Button Width="60" Margin="10" IsDefault="True" Click="AceptarNacionalidadClick">Aceptar</Button>
             <Button Width="60" Margin="10" IsCancel="True">Cancelar</Button>
         </StackPanel>
     </StackPanel>

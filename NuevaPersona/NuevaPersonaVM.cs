@@ -1,6 +1,8 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using Personas.Clases;
+using Personas.Mensajeria;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,14 +12,8 @@ using System.Threading.Tasks;
 
 namespace Personas.NuevaPersona
 {
-    class NuevaPersonaVM : ObservableObject 
+    class NuevaPersonaVM : ObservableRecipient
     {
-        private string nacionalidad;
-        public string Nacionalidad
-        {
-            get { return nacionalidad; }
-            set { SetProperty(ref nacionalidad, value); }
-        }
         private Persona personaNueva;
         public Persona PersonaNueva
         {
@@ -51,10 +47,17 @@ namespace Personas.NuevaPersona
 
             AñadirNacionalidadBtn = new RelayCommand(AñadirNacionalidad);
             AceptarBtn = new RelayCommand(Aceptar);
+
+            WeakReferenceMessenger.Default.Register<MensajeDifusorMessage>(this, (r, m) =>
+            {
+                Nacionalidades.Add(m.Value);
+            });
         }
 
         private void Aceptar()
-        {}
+        {
+            WeakReferenceMessenger.Default.Send(new PersonaDifusorMessage(PersonaNueva));
+        }
 
         private void AñadirNacionalidad()
         {

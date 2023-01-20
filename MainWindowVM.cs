@@ -23,6 +23,7 @@ namespace Personas
 
         public RelayCommand NuevaPersonaBtn { get; }
         public RelayCommand ListaPersonasBtn { get; }
+        public RelayCommand ConsultaPersonasBtn { get; }
 
         public MainWindowVM()
         {
@@ -30,6 +31,12 @@ namespace Personas
 
             NuevaPersonaBtn = new RelayCommand(CargaNuevaPersona);
             ListaPersonasBtn = new RelayCommand(CargaListaPersona);
+            ConsultaPersonasBtn = new RelayCommand(ConsultaPersona);
+        }
+
+        private void ConsultaPersona()
+        {
+            ContenidoVentana = servicioNavegacion.VentanaConsulta();
         }
 
         private void CargaListaPersona()

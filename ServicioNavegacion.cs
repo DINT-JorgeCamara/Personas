@@ -29,5 +29,9 @@ namespace Personas
             AnyadirNacionalidad newNacionalidadDialog = new AnyadirNacionalidad();
             return newNacionalidadDialog.ShowDialog();
         }
+        public UserControl VentanaConsulta()
+        {
+            return new ConsultaPersona.ConsultaPersona();
+        }
     }
 }

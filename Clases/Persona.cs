@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Personas.Clases
 {
-    class Persona : ObservableObject
+    public class Persona : ObservableObject
     { 
         private string nombre;
         public string Nombre

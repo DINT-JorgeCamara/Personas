@@ -1,5 +1,7 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using Personas.Clases;
+using Personas.Mensajeria;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Personas.ListadoDePersonasVM
 {
-    class ListadoDePersonasVM : ObservableObject
+    class ListadoDePersonasVM : ObservableRecipient
     {
         private Persona personaSeleccionada;
         public Persona PersonaSeleccionada
@@ -28,10 +30,23 @@ namespace Personas.ListadoDePersonasVM
         public ListadoDePersonasVM()
         {
             PersonaSeleccionada = new Persona();
-            Personas = new ObservableCollection<Persona>();
-            Personas.Add(new Persona("Pietro", 30, "Italiana"));
-            Personas.Add(new Persona("Julia", 25, "Española"));
-            Personas.Add(new Persona("Sophie", 35, "Francesa"));
+            Personas = new ObservableCollection<Persona>
+            {
+                new Persona("Pietro", 30, "Italiana"),
+                new Persona("Julia", 25, "Española"),
+                new Persona("Sophie", 35, "Francesa")
+            };
+
+            WeakReferenceMessenger.Default.Register<PersonaDifusorMessage>(this, (r, m) =>
+            {
+                Personas.Add(m.Value);
+            });
+
+            WeakReferenceMessenger.Default.Register<ListadoDePersonasVM, PersonaRequestMessage>(this, (r, m) =>
+            {
+                if(!m.HasReceivedResponse)
+                    m.Reply(PersonaSeleccionada);
+            });
 
         }
 

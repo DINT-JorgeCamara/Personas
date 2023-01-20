@@ -1,13 +1,10 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Toolkit.Mvvm.Messaging;
+using Personas.Mensajeria;
 
 namespace Personas.AñadirNacionalidad
 {
-    class AnyadirNacionalidadVM : ObservableObject
+    class AnyadirNacionalidadVM : ObservableRecipient
     {
         private string nacionalidadNueva;
         public string NacionalidadNueva
@@ -17,7 +14,11 @@ namespace Personas.AñadirNacionalidad
         }
         public AnyadirNacionalidadVM()
         {
-
+            
+        }
+        public void AceptarNacionalidad()
+        {
+            WeakReferenceMessenger.Default.Send(new MensajeDifusorMessage(NacionalidadNueva));
         }
     }
 }

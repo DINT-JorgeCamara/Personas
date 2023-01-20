@@ -10,27 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Personas.AñadirNacionalidad
+namespace Personas.ConsultaPersona
 {
     /// <summary>
-    /// Lógica de interacción para AnyadirNacionalidad.xaml
+    /// Lógica de interacción para ConsultaPersona.xaml
     /// </summary>
-    public partial class AnyadirNacionalidad : Window
+    public partial class ConsultaPersona : UserControl
     {
-        private AnyadirNacionalidadVM vm;
-        public AnyadirNacionalidad()
+        ConsultaPersonaVM vm;
+        public ConsultaPersona()
         {
             InitializeComponent();
-            vm = new AnyadirNacionalidadVM();
+            vm = new ConsultaPersonaVM();
             this.DataContext = vm;
-        }
-
-        private void AceptarNacionalidadClick(object sender, RoutedEventArgs e)
-        {
-            vm.AceptarNacionalidad();
-            DialogResult = true;
         }
     }
 }
